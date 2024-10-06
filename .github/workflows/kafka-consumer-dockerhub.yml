@@ -34,6 +34,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./modules/backend/kafka
-          file: Dockerfile
+          file: ./modules/backend/kafka/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/udaconnect:kafka-consumer.v1
