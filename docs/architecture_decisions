@@ -1,0 +1,7 @@
+Based on current application structure, we can identify the following microservices:
+
+- Person Service: Handles operations related to persons.
+- Location Service: Manages location data and related functionalities.
+- Connection Service: Handles connections and queries based on location proximity.
+
+Frontend communication to Backend services, using a RESTFul API
