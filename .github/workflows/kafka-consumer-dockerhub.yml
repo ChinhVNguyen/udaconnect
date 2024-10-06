@@ -3,7 +3,7 @@ name: Udaconnect Kafka Consumer - Package with Docker
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./modules/backend/kafka
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/udaconnect:kafka-consumer.v1
