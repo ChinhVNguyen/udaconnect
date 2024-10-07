@@ -1,7 +1,12 @@
 Based on current application structure, we can identify the following microservices:
 
-- Person Service: Handles operations related to persons.
-- Location Service: Manages location data and related functionalities.
-- Connection Service: Handles connections and queries based on location proximity.
+- Person Services: Handles operations related to persons.
+- Location Services: Manages location data and related functionalities.
+- Connection Services: Handles connections and queries based on location proximity.
 
-Frontend communication to Backend services, using a RESTFul API
+Frontend communicate to Backend services (Connection services and Person services), using a RESTFul API
+
+Connection services communicate to Person services use a RESTFul API to retrieve all persons information
+
+Create new Location and Person are refactored to use Kafka and GRPC.
+

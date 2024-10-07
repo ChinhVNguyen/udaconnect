@@ -1,4 +1,3 @@
-from dataclasses import fields
 from datetime import datetime
 
 from app.udaconnect.models import Person
@@ -6,7 +5,7 @@ from app.udaconnect.schemas import PersonSchema
 from app.udaconnect.services import PersonService
 from flask import request
 from flask_accepts import accepts, responds
-from flask_restx import Namespace, Resource
+from flask_restx import Namespace, Resource, fields
 from typing import Optional, List
 
 DATE_FORMAT = "%Y-%m-%d"
