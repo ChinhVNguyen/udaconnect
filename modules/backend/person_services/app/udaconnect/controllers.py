@@ -17,6 +17,7 @@ api = Namespace("UdaConnect", description="Connections via geolocation.")  # noq
 class PersonsResource(Resource):
     @accepts(schema=PersonSchema)
     @responds(schema=PersonSchema)
+    @api.expect(Person)
     def post(self) -> Person:
         payload = request.get_json()
         new_person: Person = PersonService.create(payload)
