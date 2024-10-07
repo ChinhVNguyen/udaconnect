@@ -24,11 +24,11 @@ spec:
             configMapKeyRef:
               name: kafka-env
               key: KAFKA_API
-        - name: KAFKA_TOPIC
+        - name: KAFKA_TOPICS
           valueFrom:
             configMapKeyRef:
               name: kafka-env
-              key: KAFKA_TOPIC
+              key: KAFKA_TOPICS
         - name: DB_USERNAME
           valueFrom:
             configMapKeyRef:
