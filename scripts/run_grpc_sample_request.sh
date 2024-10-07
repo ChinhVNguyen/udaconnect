@@ -1,0 +1,1 @@
+kubectl exec -i $1 -- bash -c "python writer.py"
