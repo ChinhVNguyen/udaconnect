@@ -1,5 +1,7 @@
+import json
 import logging
 from datetime import datetime, timedelta
+import os
 from typing import Dict, List
 
 from app import db
@@ -17,12 +19,18 @@ logger = logging.getLogger("person-services")
 class PersonService:
     @staticmethod
     def create(person: Dict) -> Person:
+        kafka_api = os.getenv('KAFKA_API')
+        kafka_topics = os.getenv('KAFKA_TOPICS').split(',')
+
+        producer = KafkaProducer(
+            bootstrap_servers=kafka_api,
+            value_serializer=lambda v: json.dumps(v).encode('utf-8')
+        )
         new_person = Person()
         new_person.first_name = person["first_name"]
         new_person.last_name = person["last_name"]
         new_person.company_name = person["company_name"]
-        producer = KafkaProducer(bootstrap_servers='my-release-kafka.default.svc.cluster.local:9092')
-        producer.send('test', bytes(str(person), 'utf-8'))
+        producer.send('persons', bytes(str(person), 'utf-8'))
         producer.flush()
         return new_person
 
