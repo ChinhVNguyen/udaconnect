@@ -48,6 +48,12 @@ class LocationService:
         new_location.person_id = location["person_id"]
         new_location.creation_time = location["creation_time"]
         new_location.coordinate = ST_Point(location["latitude"], location["longitude"])
-        producer.send('locations', location, 'utf-8')
+
+        # Serialize the new_location to a dictionary
+        location_dict = LocationSchema().dump(new_location)
+
+        # Send the serialized location to Kafka
+        producer.send('locations', value=location_dict)
         producer.flush()
+
         return new_location
