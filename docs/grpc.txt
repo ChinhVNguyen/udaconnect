@@ -1,0 +1,3 @@
+Run 'sh scripts/create_kafka_topic.sh kafka_pod' to create kafka topic.
+Run 'sh scripts/run_grpc_sample_request.sh grpc_api_pod' to execute writer.py, which will create a new person via the gRPC protocol. To change the data sample, navigate to the grpc folder and modify the data in writer.py
+Run 'sh scripts/run_kafka_producer_sample.sh consumer-deployment_pod' to excute producer.py, which will create new person via kafka and gRPC protocol. To change the data sample, navigate to the kafka folder and modify the data in producers.py

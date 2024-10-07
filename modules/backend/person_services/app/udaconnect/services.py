@@ -30,9 +30,10 @@ class PersonService:
         new_person.first_name = person["first_name"]
         new_person.last_name = person["last_name"]
         new_person.company_name = person["company_name"]
-        producer.send('persons', bytes(str(person), 'utf-8'))
+        producer.send('persons', value=new_person)
         producer.flush()
-        return new_person
+        person_instance = Person(**new_person)
+        return person_instance
 
     @staticmethod
     def retrieve(person_id: int) -> Person:

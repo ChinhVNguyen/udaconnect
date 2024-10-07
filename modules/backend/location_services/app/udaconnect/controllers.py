@@ -15,7 +15,6 @@ DATE_FORMAT = "%Y-%m-%d"
 api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
 location_model = api.model('Location', {
-    'id': fields.Integer(description='Unique identifier for the location'),
     'person_id': fields.Integer(required=True, description='ID of the associated person'),
     'longitude': fields.String(required=True, description='Longitude of the location'),
     'latitude': fields.String(required=True, description='Latitude of the location'),
@@ -32,8 +31,9 @@ class LocationResource(Resource):
         location: Location = LocationService.create(request.get_json())
         return location
 
-    @api.route("/locations/<location_id>")
-    @api.param("location_id", "Unique ID for a given Location", _in="query")
+@api.route("/locations/<location_id>")
+@api.param("location_id", "Unique ID for a given Location", _in="query")
+class LocationResource(Resource):
     @responds(schema=LocationSchema)
     def get(self, location_id) -> Location:
         location: Location = LocationService.retrieve(location_id)
