@@ -46,8 +46,12 @@ class LocationService:
        
         new_location = Location()
         new_location.person_id = location["person_id"]
-        new_location.creation_time = location["creation_time"]
+        new_location.creation_time = location.get("creation_time", datetime.utcnow())  # Use current time if not provided
         new_location.coordinate = ST_Point(location["latitude"], location["longitude"])
-        producer.send('locations', bytes(str(location), 'utf-8'))
+
+        location_dict = LocationSchema().dump(new_location)
+
+        producer.send('locations', value=location_dict) 
+
         producer.flush()
         return new_location
