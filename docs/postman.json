@@ -42,7 +42,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"first_name\": \"Harry\",\r\n    \"last_name\": \"Potter\",\r\n    \"company_name\": \"Monsters Inc Limited.\"\r\n\r\n}",
+					"raw": "{\r\n\r\n    \"first_name\": \"Danh\",\r\n    \"last_name\": \"nguyen\",\r\n    \"company_name\": \"GCS\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -102,7 +102,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"person_id\": 5,\r\n    \"creation_time\": \"2021-10-24T11:32:07\",\r\n    \"latitude\": \"-112.292383\",\r\n    \"longitude\": \"27.54433\"\r\n}"
+					"raw": "{\r\n    \"person_id\": 5,\r\n    \"creation_time\": \"2024-10-07T11:32:07\",\r\n    \"latitude\": \"-112.292383\",\r\n    \"longitude\": \"27.54433\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:30032/api/locations",
@@ -130,7 +130,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:30011/api/persons/5/connection?start_date=2021-10-24&end_date=2021-12-30&distance=5",
+					"raw": "http://localhost:30011/api/persons/5/connection?start_date=2024-10-24&end_date=2024-12-30&distance=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -145,11 +145,11 @@
 					"query": [
 						{
 							"key": "start_date",
-							"value": "2020-01-01"
+							"value": "2024-01-01"
 						},
 						{
 							"key": "end_date",
-							"value": "2020-12-30"
+							"value": "2024-12-30"
 						},
 						{
 							"key": "distance",

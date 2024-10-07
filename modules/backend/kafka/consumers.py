@@ -34,9 +34,9 @@ consumer = KafkaConsumer(*kafka_topics, bootstrap_servers=kafka_api, value_deser
 
 for message in consumer:
     resp=eval(json.loads((message.value)))
-    if message.topic == 'create_person':
+    if message.topic == 'persons':
         create_person(resp)
-    elif message.topic == 'create_location':
+    elif message.topic == 'locations':
         create_location(resp)
     else:
         print(resp)
