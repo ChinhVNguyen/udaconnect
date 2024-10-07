@@ -92,6 +92,6 @@ class PersonService:
     @staticmethod
     def retrieve_all() -> List[Person]:
         persons = requests.get("http://person-svc-api:5000/api/persons").json()
-        person_list = [Person(p) for p in persons]
+        person_list = [Person(**p) for p in persons]
 
         return person_list
