@@ -26,10 +26,13 @@ class PersonService:
             bootstrap_servers=kafka_api,
             value_serializer=lambda v: json.dumps(v).encode('utf-8')
         )
-        new_person = Person()
-        new_person.first_name = person["first_name"]
-        new_person.last_name = person["last_name"]
-        new_person.company_name = person["company_name"]
+
+        new_person = {
+            "first_name": person["first_name"],
+            "last_name": person["last_name"],
+            "company_name": person["company_name"]
+        }
+        
         producer.send('persons', value=new_person)
         producer.flush()
         person_instance = Person(**new_person)

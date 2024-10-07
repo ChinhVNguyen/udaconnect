@@ -93,9 +93,13 @@ Once the project is up and running, you should be able to see 3 deployments and 
 
 
 These pages should also load on your web browser:
-* `http://localhost:30001/` - OpenAPI Documentation
-* `http://localhost:30001/api/` - Base path for API
+* `http://localhost:30010/` - Person OpenAPI Documentation
+* `http://localhost:30010/api/persons` - Person Base path for API
+* `http://localhost:30011/` - Connection OpenAPI Documentation
+* `http://localhost:30011/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5` - Connection Base path for API
 * `http://localhost:30000/` - Frontend ReactJS Application
+* `http://localhost:30032/` - Location OpenAPI Documentation
+
 
 #### Deployment Note
 You may notice the odd port numbers being served to `localhost`. [By default, Kubernetes services are only exposed to one another in an internal network](https://kubernetes.io/docs/concepts/services-networking/service/). This means that `udaconnect-app` and `udaconnect-api` can talk to one another. For us to connect to the cluster as an "outsider", we need to a way to expose these services to `localhost`.
