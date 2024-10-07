@@ -1,5 +1,7 @@
+import json
 import logging
 from datetime import datetime, timedelta
+import os
 from typing import Dict, List
 import time
 from app import db
@@ -34,13 +36,18 @@ class LocationService:
             logger.warning(f"Unexpected data format in payload: {validation_results}")
             raise Exception(f"Invalid payload: {validation_results}")
 
-        producer = KafkaProducer(bootstrap_servers='my-release-kafka.default.svc.cluster.local:9092')
-        producer.send('test', bytes(str(location), 'utf-8'))
-        producer.flush()
+        kafka_api = os.getenv('KAFKA_API')
+        kafka_topics = os.getenv('KAFKA_TOPICS').split(',')
+
+        producer = KafkaProducer(
+            bootstrap_servers=kafka_api,
+            value_serializer=lambda v: json.dumps(v).encode('utf-8')
+        )
+       
         new_location = Location()
         new_location.person_id = location["person_id"]
         new_location.creation_time = location["creation_time"]
         new_location.coordinate = ST_Point(location["latitude"], location["longitude"])
-        db.session.add(new_location)
-        db.session.commit()
+        producer.send('locations', bytes(str(location), 'utf-8'))
+        producer.flush()
         return new_location
