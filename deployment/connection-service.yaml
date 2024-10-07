@@ -9,7 +9,7 @@ spec:
   - name: "5002"
     port: 5002
     targetPort: 5002
-    nodePort: 30003
+    nodePort: 30011
   selector:
     service: connection-services
   type: NodePort
