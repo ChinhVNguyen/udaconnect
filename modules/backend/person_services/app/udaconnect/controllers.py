@@ -1,3 +1,4 @@
+from dataclasses import fields
 from datetime import datetime
 
 from app.udaconnect.models import Person
@@ -12,12 +13,18 @@ DATE_FORMAT = "%Y-%m-%d"
 
 api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
+# Define the Swagger model for Person
+person_model = api.model('Person', {
+    'first_name': fields.String(required=True, description='First name of the person'),
+    'last_name': fields.String(required=True, description='Last name of the person'),
+    'company_name': fields.String(required=True, description='Company name of the person'),
+})
 
 @api.route("/persons")
 class PersonsResource(Resource):
     @accepts(schema=PersonSchema)
     @responds(schema=PersonSchema)
-    @api.expect(Person)
+    @api.expect(person_model)
     def post(self) -> Person:
         payload = request.get_json()
         new_person: Person = PersonService.create(payload)
